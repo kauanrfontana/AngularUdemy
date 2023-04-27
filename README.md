@@ -1,2 +1,2 @@
-# AngularUdemy
-Diretório para guardar projeto desenvolvido com o curso da Udemy de Angula
+# Aprendendo Angular com curso da Udemy
+Diretório para guardar projeto desenvolvido com o curso da Udemy de Angular
