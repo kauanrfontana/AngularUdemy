@@ -9,5 +9,7 @@ import { Recipe } from '../repice.model'
 export class RecipeListComponent {
     recipes: Recipe[] = [
         new Recipe('a test recipe', 'this  is a symply test', 'https://www.tasteofhome.com/wp-content/uploads/2018/05/Baked-Mac-and-Cheese_EXPS_SDDJ17_25257_D08_04_4b.jpg'),
+        new Recipe('a test recipe', 'this  is a symply test', 'https://www.tasteofhome.com/wp-content/uploads/2018/05/Baked-Mac-and-Cheese_EXPS_SDDJ17_25257_D08_04_4b.jpg')
+        
     ];
 }
