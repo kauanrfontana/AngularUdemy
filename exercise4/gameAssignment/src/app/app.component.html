@@ -1,5 +1,11 @@
 <div class="container">
+  <!-- fazer forEach iniciando aqui -->
   <app-game-control></app-game-control>
-  <app-even [num]="1"></app-even>
-  <app-odd></app-odd>
+  <div *ngIf="num % 2 == 0; else Even">
+    <app-odd [num]="num"></app-odd>
+  </div>
+  <ng-template #Even>
+    <app-even [num]="num"></app-even>
+  </ng-template>
+  <!-- e acabando aqui, para repetir tudo e validar os números -->
 </div>
