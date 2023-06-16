@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  num = 2
-  title = 'gameAssignment';
-  
+  elements = [{type:'Odd', num: 0}];
+
+  createOE(element: number){
+    this.elements.push({
+      type: element % 2 == 0 ? 'Odd' : 'Even',
+      num: element
+    })
+  }
 }

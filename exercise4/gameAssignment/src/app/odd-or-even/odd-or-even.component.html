@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+  <div class="panel-heading" [ngStyle]="{color: color()}">{{ element.type }}</div>
+  <div class="panel-body">
+    <p>
+      <strong *ngIf="element.type === 'Odd'" style="color: lightgreen;">{{ element.num }}</strong>
+      <strong *ngIf="element.type === 'Even'" style="color: darkblue;">{{ element.num }}</strong>
+    </p>
+  </div>
+</div>

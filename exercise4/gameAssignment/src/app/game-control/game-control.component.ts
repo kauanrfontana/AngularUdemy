@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-game-control',
@@ -6,10 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent {
-  started = false;
-  time = 0;
-  interval:any;
+  @Output() addedElement = new EventEmitter<number>();
 
+  started = false;
+  interval:any;
+  element = 0;
   btn_start = true;
   btn_stop = false;
 
@@ -18,7 +19,8 @@ export class GameControlComponent {
     this.btn_stop = true;
     this.started = true; 
     this.interval = setInterval(() => {
-      this.time++
+      this.element++
+      this.addedElement.emit(this.element)
     }, 1000)
   }
 
