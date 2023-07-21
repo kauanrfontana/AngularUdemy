@@ -25,7 +25,4 @@ export class UsersComponent {
 
   constructor(private router: Router){}
 
-  onSelectUser(user: User) {
-    this.router.navigate([`/users/${user.id}/${user.name}`]);
-  }
 }
