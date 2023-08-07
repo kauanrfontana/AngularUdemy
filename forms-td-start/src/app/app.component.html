@@ -17,7 +17,10 @@
               required
             />
           </div>
-          <button class="btn btn-default" type="button" (click)="suggestUserName()">
+          <button 
+          class="btn btn-default" 
+          type="button" 
+          (click)="suggestUserName()">
             Suggest an Username
           </button>
           <div class="form-group">
@@ -55,9 +58,12 @@
           class="form-control"
           [(ngModel)]="answer"></textarea>
         </div>
-        <p>Your reply: {{ answer }}</p>
+        <p class="text-warning" *ngIf="f.value.questionAnswer !== ''">
+          Your reply: {{ answer }}
+        </p>
+        <p style="font-weight: bold;">Gender</p>
         <div class="radio" *ngFor="let gender of genders">
-          <label>
+          <label for="gender">
             <input 
             type="radio"
             name="gender"
@@ -73,6 +79,17 @@
         [disabled]="!f.valid"
         >Submit</button>
       </form>
+      <hr>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username: {{ user.username }}</p>
+      <p>Mail: {{ user.email }}</p>
+      <p>Secret Question: {{ user.secretQuestion }}</p>
+      <p>Answer: {{ user.answer }}</p>
+      <p>Gender: {{ user.gender }}</p>
     </div>
   </div>
 </div>
