@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   @ViewChild('f') form: NgForm;
+  defaultQuestion = 'pet';
+  answer: string = '';
+  genders = ['male', 'female'];
 
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -18,6 +21,6 @@ export class AppComponent {
   } */
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.form.value);
   }
 }
