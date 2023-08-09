@@ -1,0 +1,7 @@
+<div class="container">
+  <app-game-control (addedElement)="createOE($event)"></app-game-control>
+  <app-odd-or-even
+  *ngFor="let element of elements" 
+  [element]="element">
+</app-odd-or-even>
+</div>
