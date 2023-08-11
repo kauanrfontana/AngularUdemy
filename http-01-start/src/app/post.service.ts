@@ -18,9 +18,18 @@ export class PostService {
     });
   }
 
-  fetchPosts():Observable<{ [key: string]: Post }> {
+  fetchPosts():Observable<Post[]> {
     return this.http
-      .get<{ [key: string]: Post }>('https://angular-guide-81d3b-default-rtdb.firebaseio.com/posts.json');
+      .get<{ [key: string]: Post }>('https://angular-guide-81d3b-default-rtdb.firebaseio.com/posts.json')
+      .pipe(map((responseData: { [key: string]: Post }) => {
+        const postsArray: Post[] = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            postsArray.push({ ...responseData[key], id: key });
+          }
+        }
+        return postsArray;
+      }));
       
   }
 }

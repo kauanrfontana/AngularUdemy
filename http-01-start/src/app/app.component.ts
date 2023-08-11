@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Post } from './post.model';
 import { PostService } from './post.service';
@@ -13,7 +12,7 @@ export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching = false;
 
-  constructor(private http: HttpClient, private postService: PostService) { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
     this.fecthPosts();
@@ -38,15 +37,7 @@ export class AppComponent implements OnInit {
   private fecthPosts() {
     this.isFetching = true;
     this.postService.fetchPosts()
-      .pipe(map((responseData: { [key: string]: Post }) => {
-        const postsArray: Post[] = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            postsArray.push({ ...responseData[key], id: key });
-          }
-        }
-        return postsArray;
-      })).subscribe(posts => {
+      .subscribe(posts => {
         this.isFetching = false;
         this.loadedPosts = posts;
       });
