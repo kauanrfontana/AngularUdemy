@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Request is in its way')
     const modifiedRequest = req.clone({
       headers: req.headers.append('Auth', 'xyz')
     });
