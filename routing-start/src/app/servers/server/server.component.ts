@@ -11,9 +11,7 @@ import { Server } from '../modal/server.modal';
 })
 export class ServerComponent implements OnInit {
   server: Server;
-
   constructor(
-    private serversService: ServersService,
     private route: ActivatedRoute,
     private router: Router
     ) { }
