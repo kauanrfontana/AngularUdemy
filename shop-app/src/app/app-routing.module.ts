@@ -31,11 +31,11 @@ const appRoutes: Routes = [
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'auth', component: AuthComponent },
 
-  { path: '**', redirectTo: 'auth'}
+  { path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
