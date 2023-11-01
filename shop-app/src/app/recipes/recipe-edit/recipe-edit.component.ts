@@ -18,7 +18,7 @@ export class RecipeEditComponent implements OnInit {
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -43,7 +43,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onAddIngredient() {
-    (this.recipeForm.get('ingredients') as FormArray).push(
+    (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
         amount: new FormControl(null, [
@@ -55,11 +55,15 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onDeleteIngredient(index: number) {
-    (this.recipeForm.get('ingredients') as FormArray).removeAt(index);
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  get ingredients() {
+    return this.recipeForm.get('ingredients') as FormArray
   }
 
   private initForm() {
@@ -80,7 +84,7 @@ export class RecipeEditComponent implements OnInit {
               name: new FormControl(ingredient.name, Validators.required),
               amount: new FormControl(ingredient.amount, [
                 Validators.required,
-                Validators.min(9)
+                Validators.pattern(/^[1-9]+[0-9]*$/)
               ])
             })
           );
@@ -94,9 +98,5 @@ export class RecipeEditComponent implements OnInit {
       description: new FormControl(recipeDescription, Validators.required),
       ingredients: recipeIngredients
     });
-  }
-
-  get controls() {
-    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 }
