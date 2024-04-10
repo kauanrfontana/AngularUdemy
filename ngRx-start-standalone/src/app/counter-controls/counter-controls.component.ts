@@ -21,6 +21,6 @@ export class CounterControlsComponent {
 
   decrement() {
     // this.store.dispatch(new DecrementAction(2));
-    this.store.dispatch(increment({ value: 2 }));
+    this.store.dispatch(decrement({ value: 2 }));
   }
 }
