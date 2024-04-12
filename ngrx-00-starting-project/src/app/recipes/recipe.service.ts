@@ -6,10 +6,11 @@ import * as fromApp from '../store/app.reducer';
 import { Store } from "@ngrx/store";
 import { Ingredient } from "../shared/ingredient.model";
 import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
+import * as RecipesActions from "../recipes/store/recipe.actions"
 
 @Injectable()
 export class RecipeService {
-  recipesChanged = new Subject<Recipe[]>();
+  // recipesChanged = new Subject<Recipe[]>();
 
   // private recipes: Recipe[] = [
   //   new Recipe(
@@ -31,7 +32,7 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
-    this.recipesChanged.next(this.recipes.slice());
+    // this.recipesChanged.next(this.recipes.slice());
   }
 
   getRecipes() {
@@ -46,18 +47,19 @@ export class RecipeService {
      this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
    }
 
-  addRecipe(recipe: Recipe) {
+  /* addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
-    this.recipesChanged.next(this.recipes.slice());
-  }
+    this.store.dispatch(new RecipesActions.AddRecipe(recipe));
+    // this.recipesChanged.next(this.recipes.slice());
+  } */
 
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
-    this.recipesChanged.next(this.recipes.slice());
+    // this.recipesChanged.next(this.recipes.slice());
   }
 
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
-    this.recipesChanged.next(this.recipes.slice());
+    // this.recipesChanged.next(this.recipes.slice());
   }
 }
