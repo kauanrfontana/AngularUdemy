@@ -1,9 +1,11 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as RecipesActions from "../store/recipe.actions";
-import { map, switchMap } from "rxjs";
+import { map, switchMap, withLatestFrom } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Recipe } from "../recipe.model";
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
+import * as fromApp from "../../store/app.reducer";
 
 @Injectable()
 export class RecipesEffects {
@@ -35,15 +37,16 @@ export class RecipesEffects {
 
   storeRecipes = createEffect(() => this.actions$.pipe(
     ofType(RecipesActions.STORE_RECIPES),
-    switchMap((recipesData: RecipesActions.StoreRecipes) => {
+    withLatestFrom(this.store.select("recipes")),
+    switchMap(([actionData, recipesState]) => {
       return this.http
           .put(
             'https://ng-course-recipe-book-9fb9f-default-rtdb.firebaseio.com/recipes.json',
-            recipesData.payload
+            recipesState.recipes
           )
          
     })
   ), {dispatch: false});
 
-  constructor(private actions$: Actions, private http: HttpClient) {}
+  constructor(private actions$: Actions, private http: HttpClient, private store: Store<fromApp.AppState>) {}
 }
